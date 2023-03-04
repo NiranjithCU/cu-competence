@@ -1,0 +1,75 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
+}
+
+model Profile {
+  id         Int         @id @default(autoincrement())
+  age        String?
+  job        String?
+  country    String?
+  program    String?
+  gender     String?
+  semester   String?
+  assesments Assesment[]
+}
+
+model Assesment {
+  id        Int       @id @default(autoincrement())
+  profile   Profile   @relation(fields: [profileId], references: [id])
+  profileId Int
+  answers   Answers[]
+  feedback  Feedback?
+}
+
+model Answers {
+  id          Int        @id @default(autoincrement())
+  level       String?
+  competence  String?
+  answer      String?
+  scale       String?
+  assesment   Assesment? @relation(fields: [assesmentId], references: [id])
+  assesmentId Int?
+}
+
+model Feedback {
+  id          Int       @id @default(autoincrement())
+  response    String?
+  assesment   Assesment @relation(fields: [assesmentId], references: [id])
+  assesmentId Int       @unique
+}
+
+model Level {
+  id          Int          @id @default(autoincrement())
+  name        String?
+  competences Competence[]
+}
+
+model Competence {
+  id      Int      @id @default(autoincrement())
+  name    String?
+  level   Level?   @relation(fields: [levelId], references: [id])
+  levelId Int?
+  choices Choice[]
+}
+
+model Choice {
+  id           Int         @id @default(autoincrement())
+  name         String?
+  competence   Competence? @relation(fields: [competenceId], references: [id])
+  competenceId Int?
+}
