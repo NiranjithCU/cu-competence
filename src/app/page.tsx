@@ -102,4 +102,4 @@ export default async function Home() {
   );
 }
 
-export const dynamic = 'auto'
+export const dynamic = 'force-dynamic'
