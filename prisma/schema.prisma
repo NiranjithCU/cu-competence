@@ -11,6 +11,7 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
+// next-auth schema
 model Account {
   id                       String  @id @default(cuid())
   userId                   String
@@ -45,6 +46,7 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
+  profile       Profile?
   accounts      Account[]
   sessions      Session[]
 }
@@ -57,6 +59,7 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
+// app schema
 model Profile {
   id         Int         @id @default(autoincrement())
   age        String?
@@ -65,6 +68,8 @@ model Profile {
   program    String?
   gender     String?
   semester   String?
+  user       User        @relation(fields: [userId], references: [id])
+  userId     String      @unique
   assesments Assesment[]
 }
 
@@ -78,10 +83,11 @@ model Assesment {
 
 model Answers {
   id          Int        @id @default(autoincrement())
-  level       String?
+  area        String?
   competence  String?
+  theme       String?
   answer      String?
-  scale       String?
+  level       Int?
   assesment   Assesment? @relation(fields: [assesmentId], references: [id])
   assesmentId Int?
 }
@@ -93,23 +99,47 @@ model Feedback {
   assesmentId Int       @unique
 }
 
-model Level {
+model Area {
   id          Int          @id @default(autoincrement())
   name        String?
   competences Competence[]
 }
 
 model Competence {
-  id      Int      @id @default(autoincrement())
-  name    String?
-  level   Level?   @relation(fields: [levelId], references: [id])
-  levelId Int?
-  choices Choice[]
+  id          Int              @id @default(autoincrement())
+  name        String?
+  description String?
+  area        Area?            @relation(fields: [areaId], references: [id])
+  areaId      Int?
+  themes      Theme[]
 }
 
-model Choice {
+model CompetenceLevel {
+  id          Int          @id @default(autoincrement())
+  name        String?
+  description String?
+}
+
+model Theme {
   id           Int         @id @default(autoincrement())
   name         String?
   competence   Competence? @relation(fields: [competenceId], references: [id])
   competenceId Int?
+  choices      Choice[]
+}
+
+model Choice {
+  id      Int          @id @default(autoincrement())
+  name    String?
+  theme   Theme?       @relation(fields: [themeId], references: [id])
+  themeId Int?
+  level   ChoiceLevel? @relation(fields: [levelId], references: [id])
+  levelId Int?
+}
+
+model ChoiceLevel {
+  id          Int      @id @default(autoincrement())
+  name        String?
+  description String?
+  choices     Choice[]
 }
