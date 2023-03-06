@@ -82,14 +82,17 @@ model Assesment {
 }
 
 model Answers {
-  id          Int        @id @default(autoincrement())
-  area        String?
-  competence  String?
-  theme       String?
-  answer      String?
-  level       Int?
-  assesment   Assesment? @relation(fields: [assesmentId], references: [id])
-  assesmentId Int?
+  id           Int         @id @default(autoincrement())
+  assesment    Assesment?  @relation(fields: [assesmentId], references: [id])
+  assesmentId  Int?
+  area         Area?       @relation(fields: [areaId], references: [id])
+  areaId       Int?
+  competence   Competence? @relation(fields: [competenceId], references: [id])
+  competenceId Int?
+  theme        Theme?      @relation(fields: [themeId], references: [id])
+  themeId      Int?
+  choice       Choice?     @relation(fields: [choiceId], references: [id])
+  choiceId     Int?
 }
 
 model Feedback {
@@ -103,19 +106,21 @@ model Area {
   id          Int          @id @default(autoincrement())
   name        String?
   competences Competence[]
+  answers     Answers[]
 }
 
 model Competence {
-  id          Int              @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   name        String?
   description String?
-  area        Area?            @relation(fields: [areaId], references: [id])
+  area        Area?     @relation(fields: [areaId], references: [id])
   areaId      Int?
   themes      Theme[]
+  answers     Answers[]
 }
 
 model CompetenceLevel {
-  id          Int          @id @default(autoincrement())
+  id          Int     @id @default(autoincrement())
   name        String?
   description String?
 }
@@ -126,6 +131,7 @@ model Theme {
   competence   Competence? @relation(fields: [competenceId], references: [id])
   competenceId Int?
   choices      Choice[]
+  answers      Answers[]
 }
 
 model Choice {
@@ -135,6 +141,7 @@ model Choice {
   themeId Int?
   level   ChoiceLevel? @relation(fields: [levelId], references: [id])
   levelId Int?
+  answers Answers[]
 }
 
 model ChoiceLevel {

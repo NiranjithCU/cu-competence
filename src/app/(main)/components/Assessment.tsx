@@ -1,21 +1,39 @@
 "use client";
 
+import { useSession } from "next-auth/react";
 import { Form, Field, Formik } from "formik";
 
 export interface AssesmentProps {
   records: any;
 }
 
+
 export default function Assessment({ records }: AssesmentProps) {
+  const session  = useSession()
   return (
     <>
       <Formik
-        initialValues={{ theme_1: "", theme_2: "", theme_3: "" }}
-        onSubmit={(values, actions) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            actions.setSubmitting(false);
-          }, 1000);
+        initialValues={{}}
+        onSubmit={async (values, actions) => {
+          const answers: any[] = [];
+
+          Object.values(values).map((choice: any) => {
+            answers.push(JSON.parse(choice));
+          });
+
+          const response = await fetch("/api/assessment", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(answers),
+          });
+
+          const data = await response.json();
+          if (data.error) {
+            console.log(data.error);
+          }
+          console.log(data);
         }}
       >
         {({ values }) => (
@@ -57,7 +75,12 @@ export default function Assessment({ records }: AssesmentProps) {
                                         type="radio"
                                         id={`choice_${choice.id}`}
                                         name={`theme_${theme.id}`}
-                                        value={`choice_${choice.levelId}`}
+                                        value={JSON.stringify({
+                                          areaId: record.id,
+                                          competenceId: competence.id,
+                                          themeId: theme.id,
+                                          choiceId: choice.id,
+                                        })}
                                         className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                                       />
 
