@@ -23,7 +23,7 @@ export default function Assessment({ records }: AssesmentProps) {
             {/* Section */}
             {records.map((record: any) => (
               <div key={record.id}>
-                <h2 className="text-2xl font-bold leading-10 tracking-tight text-gray-900 uppercase">
+                <h2 className="text-2xl font-bold leading-10 tracking-tight text-gray-900 uppercase mt-10">
                   {record.name}
                 </h2>
                 {record.competences.map((competence: any) => (
