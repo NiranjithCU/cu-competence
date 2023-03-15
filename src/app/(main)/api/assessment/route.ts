@@ -7,10 +7,10 @@ export async function POST(request: NextRequest) {
   if (!data) {
     return NextResponse.json({ error: "no data" });
   }
-  
+
   const assesment = await prisma.assesment.create({
     data: {
-      profileId: 3,
+      userId: "clex99eyu00004a1gudnhick2",
       answers: {
         create: data,
       },
