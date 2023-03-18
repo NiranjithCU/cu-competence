@@ -2,8 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@db";
 
 export async function GET(request: NextRequest) {
-  const initialized: any[] = [];
-
   // Choice levels
   const levels = await prisma.choiceLevel.createMany({
     data: [
@@ -4439,5 +4437,15 @@ export async function GET(request: NextRequest) {
     },
   });
 
-  return NextResponse.json(digComp_1);
+  return NextResponse.json([
+    levels,
+    entreComp_1,
+    entreComp_2,
+    entreComp_3,
+    digComp_1,
+    digComp_2,
+    digComp_3,
+    digComp_4,
+    digComp_5,
+  ]);
 }
