@@ -20,6 +20,7 @@ export async function GET(request: NextRequest) {
   const entreComp_1 = await prisma.area.create({
     data: {
       name: "Ideas and Opportunities",
+      type: "Entrepreneurial",
       competences: {
         create: [
           {
@@ -731,6 +732,7 @@ export async function GET(request: NextRequest) {
   const entreComp_2 = await prisma.area.create({
     data: {
       name: "Resources",
+      type: "Entrepreneurial",
       competences: {
         create: [
           {
@@ -1525,6 +1527,7 @@ export async function GET(request: NextRequest) {
   const entreComp_3 = await prisma.area.create({
     data: {
       name: "Into Action",
+      type: "Entrepreneurial",
       competences: {
         create: [
           {
@@ -2333,10 +2336,13 @@ export async function GET(request: NextRequest) {
   const digComp_1 = await prisma.area.create({
     data: {
       name: "Information and Data Literacy",
+      type: "Digital",
       competences: {
         create: [
           {
             name: "Browsing, searching and filtering information, data and digital content",
+            description:
+              "To articulate information needs , to search for data, information and content in digital environments, to access them and to navigate between them. To create and update personal search strategies.",
             themes: {
               create: [
                 {
@@ -2436,6 +2442,8 @@ export async function GET(request: NextRequest) {
           },
           {
             name: "Evaluating data, information and digital content",
+            description:
+              "To analyse, compare and critically evaluate the credibility and reliability of sources of data, information and digital content. To analyse, interpret and critically evaluate the data, information and digital content.",
             themes: {
               create: [
                 {
@@ -2537,6 +2545,8 @@ export async function GET(request: NextRequest) {
           },
           {
             name: "Managing data, information and digital content",
+            description:
+              "To organise, store and retrieve data, information, and content in digital environments. To organise and process them in a structured environment.",
             themes: {
               create: [
                 {
@@ -2642,10 +2652,13 @@ export async function GET(request: NextRequest) {
   const digComp_2 = await prisma.area.create({
     data: {
       name: "Communication and Collaboration",
+      type: "Digital",
       competences: {
         create: [
           {
             name: "Interacting through digital technologies",
+            description:
+              "To interact through a variety of digital technologies and to understand appropriate digital communication means for a given context.",
             themes: {
               create: [
                 {
@@ -2745,6 +2758,8 @@ export async function GET(request: NextRequest) {
           },
           {
             name: "Sharing information and content through digital technologies",
+            description:
+              "To share data, information and digital content with others through appropriate digital technologies. To act as an intermediary, to know about referencing and attribution practices.",
             themes: {
               create: [
                 {
@@ -2847,6 +2862,8 @@ export async function GET(request: NextRequest) {
           },
           {
             name: "Engaging in citizenship through digital technologies",
+            description:
+              "To participate in society through the use of public and private digital services. To seek opportunities for self-empowerment and for participatory citizenship through appropriate digital technologies.",
             themes: {
               create: [
                 {
@@ -2948,6 +2965,8 @@ export async function GET(request: NextRequest) {
           },
           {
             name: "Collaborating through digital technologies",
+            description:
+              "To use digital tools and technologies for collaborative processes, and for co-construction and co-creation of data, resources and knowledge.",
             themes: {
               create: [
                 {
@@ -3026,6 +3045,8 @@ export async function GET(request: NextRequest) {
           },
           {
             name: "Netiquette",
+            description:
+              "To be aware of behavioural norms and know-how while using digital technologies and interacting in digital environments. To adapt communication strategies to the specific audience and to be aware of cultural and generational diversity in digital environments.",
             themes: {
               create: [
                 {
@@ -3125,6 +3146,8 @@ export async function GET(request: NextRequest) {
           },
           {
             name: "Managing digital identity",
+            description:
+              "To create, and manage one or multiple digital identities, to be able to protect one’s own reputation, to deal with the data that one produces through several digital tools, environments and services.",
             themes: {
               create: [
                 {
@@ -3229,11 +3252,14 @@ export async function GET(request: NextRequest) {
 
   const digComp_3 = await prisma.area.create({
     data: {
-      name: "Digital Content Creationn",
+      name: "Digital Content Creation",
+      type: "Digital",
       competences: {
         create: [
           {
             name: "Developing digital content",
+            description:
+              "To create and edit digital content in different formats, to express oneself through digital means.",
             themes: {
               create: [
                 {
@@ -3336,6 +3362,8 @@ export async function GET(request: NextRequest) {
           },
           {
             name: "Integrating and re-elaborating digital content",
+            description:
+              "To modify, refine and integrate new information and content into an existing body of knowledge and resources to create new, original and relevant content and knowledge.",
             themes: {
               create: [
                 {
@@ -3436,6 +3464,8 @@ export async function GET(request: NextRequest) {
 
           {
             name: "Copyright and licences",
+            description:
+              "To understand how copyright and licences apply to digital information and content.",
             themes: {
               create: [
                 {
@@ -3538,6 +3568,8 @@ export async function GET(request: NextRequest) {
           },
           {
             name: "Programming",
+            description:
+              "To plan and develop a sequence of understandable instructions for a computing system to solve a given problem or to perform a specific task.",
             themes: {
               create: [
                 {
@@ -3643,10 +3675,13 @@ export async function GET(request: NextRequest) {
   const digComp_4 = await prisma.area.create({
     data: {
       name: "Safety",
+      type: "Digital",
       competences: {
         create: [
           {
             name: "Protecting devices",
+            description:
+              "To protect devices and digital content, and to understand risks and threats in digital environments. To know about safety and security measures and to have a due regard to reliability and privacy.",
             themes: {
               create: [
                 {
@@ -3746,6 +3781,8 @@ export async function GET(request: NextRequest) {
           },
           {
             name: "Protecting personal data and privacy",
+            description:
+              "To protect personal data and privacy in digital environments. To understand how to use and share personally identifiable information while being able to protect oneself and others from damages. To understand that digital services use a “Privacy policy” to inform how personal data is used.",
             themes: {
               create: [
                 {
@@ -3872,6 +3909,8 @@ export async function GET(request: NextRequest) {
           },
           {
             name: "Protecting health and well-being",
+            description:
+              "To be able to avoid health- risks and threats to physical and psychological well-being while using digital technologies. To be able to protect oneself and others from possible dangers in digital environments (e.g. cyber bullying). To be aware of digital technologies for social well-being and social inclusion.",
             themes: {
               create: [
                 {
@@ -3948,6 +3987,8 @@ export async function GET(request: NextRequest) {
           },
           {
             name: "Protecting the environment",
+            description:
+              "To be aware of the environmental impact of digital technologies and their use",
             themes: {
               create: [
                 {
@@ -4053,10 +4094,13 @@ export async function GET(request: NextRequest) {
   const digComp_5 = await prisma.area.create({
     data: {
       name: "Problem Solving",
+      type: "Digital",
       competences: {
         create: [
           {
             name: "Solving technical problems",
+            description:
+              "To identify technical problems when operating devices and using digital environments, and to solve them (from trouble-shooting to solving more complex problems).",
             themes: {
               create: [
                 {
@@ -4159,6 +4203,8 @@ export async function GET(request: NextRequest) {
           },
           {
             name: "Identifying needs and technological responses",
+            description:
+              "To assess needs and to identify, evaluate, select and use digital tools and possible technological responses and to solve them. To adjust and customise digital environments to personal needs (e.g. accessibility).",
             themes: {
               create: [
                 {
@@ -4259,6 +4305,8 @@ export async function GET(request: NextRequest) {
           },
           {
             name: "Creatively using digital technologies",
+            description:
+              "To use digital tools and technologies to create knowledge and to innovate processes and products. To engage individually and collectively in cognitive processing to understand and resolve conceptual problems and problem situations in digital environments.",
             themes: {
               create: [
                 {
@@ -4335,6 +4383,8 @@ export async function GET(request: NextRequest) {
           },
           {
             name: "Identifying digital competence gaps",
+            description:
+              "To understand where one’s own digital competence needs to be improved or updated. To be able to support others with their digital competence development. To seek opportunities for self-development and to keep up-to-date with the digital evolution.",
             themes: {
               create: [
                 {

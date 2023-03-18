@@ -98,6 +98,7 @@ model Feedback {
 model Area {
   id          Int          @id @default(autoincrement())
   name        String?
+  type        String?
   competences Competence[]
   answers     Answers[]
 }
