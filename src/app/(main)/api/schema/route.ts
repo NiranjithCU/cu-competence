@@ -25,6 +25,7 @@ export async function GET(request: NextRequest) {
         create: [
           {
             name: "Spotting opportunities",
+            description: "Identify and seize opportunities to create value by exploring the social, cultural and economic landscape. Identify needs and challenges that need to be met. Establish new connections and bring together scattered elements of the landscape to create opportunities to create value.",
             themes: {
               create: [
                 {
@@ -188,6 +189,7 @@ export async function GET(request: NextRequest) {
           },
           {
             name: "Creativity",
+            description: "Develop several ideas and opportunities to create value, including better solutions to existing and new challenges. Explore and experiment with innovative approaches. Combine knowledge and resources to achieve valuable effects.",
             themes: {
               create: [
                 {
@@ -382,6 +384,7 @@ export async function GET(request: NextRequest) {
           },
           {
             name: "Vision",
+            description: "Imagine the future. Develop a vision to turn ideas into action. Visualise future scenarios to help guide effort and action.",
             themes: {
               create: [
                 {
@@ -490,6 +493,7 @@ export async function GET(request: NextRequest) {
           },
           {
             name: "Valuing ideas",
+            description: "Judge what value is in social, cultural and economic terms. Recognise the potential an idea has for creating value and identify suitable ways of making the most out of it.",
             themes: {
               create: [
                 {
@@ -575,6 +579,7 @@ export async function GET(request: NextRequest) {
           },
           {
             name: "Ethical and sustainable thinking",
+            description: "Assess the consequences of ideas that bring value and the effect of entrepreneurial action on the target community, the market, society and the environment. Reflect on how sustainable long-term social, cultural and economic goals are, and the course of action chosen. Act responsibly.",
             themes: {
               create: [
                 {
@@ -737,6 +742,7 @@ export async function GET(request: NextRequest) {
         create: [
           {
             name: "Self-awareness and self-efficacy",
+            description:"Reflect on your needs, aspirations and wants in the short, medium and long term Identify and assess your individual and group strengths and weaknesses. Believe in your ability to influence the course of events, despite uncertainty, setbacks and temporary failures.",
             themes: {
               create: [
                 {
@@ -872,6 +878,7 @@ export async function GET(request: NextRequest) {
           },
           {
             name: "Motivation and perseverance",
+            description:"Be determined to turn ideas into action and satisfy your need to achieve. Be prepared to be patient and keep trying to achieve your long-term individual or group aims. Be resilient under pressure, adversity, and temporary failure.",
             themes: {
               create: [
                 {
@@ -1047,6 +1054,7 @@ export async function GET(request: NextRequest) {
           },
           {
             name: "Mobilizing resources",
+            description: "Get and manage the material, non-material and digital resources needed to turn ideas into action. Make the most of limited resources. Get and manage the competences needed at any stage, including technical, legal, tax and digital competences (for example through suitable partnerships, networking, outsourcing and crowdsourcing).",
             themes: {
               create: [
                 {
@@ -1210,6 +1218,7 @@ export async function GET(request: NextRequest) {
           },
           {
             name: "Financial and economic literacy",
+            description: "Estimate the cost of turning an idea into a value-creating activity. Plan, put in place and evaluate financial decisions over time. Manage financing to make sure my value-creating activity can last over the long term.",
             themes: {
               create: [
                 {
@@ -1365,6 +1374,7 @@ export async function GET(request: NextRequest) {
           },
           {
             name: "Mobilizing others",
+            description:"Inspire and enthuse relevant stakeholders. Get the support needed to achieve valuable outcomes. Demonstrate effective communication, persuasion, negotiation and leadership.",
             themes: {
               create: [
                 {
@@ -1532,6 +1542,7 @@ export async function GET(request: NextRequest) {
         create: [
           {
             name: "Taking the initiative",
+description:"Initiate processes that create value. Take up challenges. Act and work independently to achieve goals, stick to intentions and carry out planned tasks.",
             themes: {
               create: [
                 {
@@ -1644,6 +1655,7 @@ export async function GET(request: NextRequest) {
           },
           {
             name: "Planning and management",
+            description:"Set long-, medium- and short-term goals. Define priorities and action plans. Adapt to unforeseen changes.",
             themes: {
               create: [
                 {
@@ -1874,6 +1886,7 @@ export async function GET(request: NextRequest) {
           },
           {
             name: "Coping with uncertainty, ambiguity and risk",
+            description:"Make decisions when the result of that decision is uncertain, when the information available is partial or ambiguous, or when there is a risk of unintended outcomes. Within the value-creating process, include structured ways of testing ideas and prototypes from the early stages, to reduce risks of failing. Handle fastmoving situations promptly and flexibly.",
             themes: {
               create: [
                 {
@@ -1990,6 +2003,7 @@ export async function GET(request: NextRequest) {
           },
           {
             name: "Working with others",
+            description:"Work together and cooperate with others to develop ideas and turn them into action. Network. Solve conflicts and face up to competition positively when necessary.",
             themes: {
               create: [
                 {
@@ -2209,6 +2223,7 @@ export async function GET(request: NextRequest) {
           },
           {
             name: "Learning through experience",
+            description:"Use any initiative for value creation as a learning opportunity. Learn with others, including peers and mentors. Reflect and learn from both success and failure (your own and other people’s).",
             themes: {
               create: [
                 {
