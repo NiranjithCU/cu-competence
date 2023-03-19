@@ -26,14 +26,13 @@ export default function Profile() {
               body: JSON.stringify(profile),
             });
 
-            const data = await response.json();
-
-            if (data.error) {
+            if (response.status === 200) {
+              const data = await response.json();
+              if (data.id) {
+                router.push(`/assessment/start/${data.id}`);
+              }
+            } else {
               alert("An error has occurred");
-            }
-
-            if (data.id) {
-              router.push(`/assessment/start/${data.id}`);
             }
           }}
         >
@@ -60,7 +59,7 @@ export default function Profile() {
                   <div className=" bg-white px-4 py-5 sm:p-6">
                     <label
                       htmlFor="country"
-                      className="mt-5 block text-sm font-medium leading-6 text-gray-900"
+                      className="mt-1 block text-sm font-medium leading-6 text-gray-900"
                     >
                       Country of Origin
                     </label>

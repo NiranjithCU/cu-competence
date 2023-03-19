@@ -10,7 +10,7 @@ export interface AssesmentProps {
 
 export default function Assessment({ records, assessmentId }: AssesmentProps) {
   const router = useRouter();
-  const [question, setQuestion] = useState(0);
+  const [question, setQuestion] = useState(140);
   const record = records[question];
 
   const nextQuestion = (q: number) => {
@@ -40,14 +40,13 @@ export default function Assessment({ records, assessmentId }: AssesmentProps) {
             body: JSON.stringify({ id: assessmentId, answers }),
           });
 
-          const data = await response.json();
-
-          if (data.error) {
+          if (response.status === 200) {
+            const data = await response.json();
+            if (data.id) {
+              router.push(`/assessment/${assessmentId}/feedback`);
+            }
+          } else {
             alert("An error has occurred");
-          }
-
-          if (data.id) {
-            router.push(`/assessment`);
           }
         }}
       >
