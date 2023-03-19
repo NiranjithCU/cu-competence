@@ -1,18 +1,16 @@
 "use client";
 
-import { useSession } from "next-auth/react";
-import { Form, Field, Formik } from "formik";
 import { useState } from "react";
-
+import { useRouter } from "next/navigation";
+import { Form, Field, Formik } from "formik";
 export interface AssesmentProps {
   records: any;
+  assessmentId: string;
 }
 
-export default function Assessment({ records }: AssesmentProps) {
-  const session = useSession();
-
-  const [question, setQuestion] = useState(140);
-
+export default function Assessment({ records, assessmentId }: AssesmentProps) {
+  const router = useRouter();
+  const [question, setQuestion] = useState(0);
   const record = records[question];
 
   const nextQuestion = (q: number) => {
@@ -34,35 +32,31 @@ export default function Assessment({ records }: AssesmentProps) {
             answers.push(JSON.parse(choice));
           });
 
-          console.log(answers);
-
           const response = await fetch("/api/assessment", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify(answers),
+            body: JSON.stringify({ id: assessmentId, answers }),
           });
 
           const data = await response.json();
 
           if (data.error) {
-            console.log(data.error);
+            alert("An error has occurred");
           }
 
-          console.log(data);
+          if (data.id) {
+            router.push(`/assessment`);
+          }
         }}
       >
-        {({ values }) => (
+        {({ values, isSubmitting }) => (
           <Form>
-            {/* Profile */}
-
-            {/* /Profile */}
-
             {/* Questions */}
             {record && (
               <div key={record.id}>
-                <h2 className="mt-10 mb-2 text-2xl font-bold uppercase leading-10 tracking-tight text-gray-900">
+                <h2 className="mb-2 text-2xl font-bold uppercase leading-10 tracking-tight text-gray-900">
                   {record.competence.area.name}
                 </h2>
                 <div className="overflow-hidden rounded-lg bg-gray-50 shadow">
@@ -84,11 +78,12 @@ export default function Assessment({ records }: AssesmentProps) {
                           id={`choice_${choice.id}`}
                           name={`theme_${record.id}`}
                           value={JSON.stringify({
-                            areaId: record.id,
+                            areaId: record.competence.areaId,
                             competenceId: record.competenceId,
                             themeId: record.id,
                             choiceId: choice.id,
                           })}
+                          required
                           className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                         />
                         <label
@@ -116,31 +111,63 @@ export default function Assessment({ records }: AssesmentProps) {
                         </p>
                       </div>
                       <div className="flex flex-1 justify-between sm:justify-end">
-                        {question > 0 && (
+                        {!isSubmitting && question > 0 && (
                           <button
                             type="button"
                             onClick={() => pastQuestion(question)}
-                            className="relative inline-flex items-center rounded-md bg-gray-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            className="relative inline-flex items-center rounded-md bg-gray-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
                           >
                             Back
                           </button>
                         )}
-                        {question < records.length - 1 && (
-                          <button
-                            type="button"
-                            onClick={() => nextQuestion(question)}
-                            className="relative ml-3 inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                          >
-                            Next
-                          </button>
-                        )}
+                        {!isSubmitting &&
+                          question < records.length - 1 &&
+                          Object.keys(values).some(
+                            (key) => key === `theme_${record.id}`
+                          ) && (
+                            <button
+                              type="button"
+                              onClick={() => nextQuestion(question)}
+                              className="relative ml-3 inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            >
+                              Next
+                            </button>
+                          )}
                         {question === records.length - 1 && (
-                          <button
-                            type="submit"
-                            className="relative ml-3 inline-flex items-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
-                          >
-                            Submit
-                          </button>
+                          <>
+                            {isSubmitting ? (
+                              <button className="relative ml-3 inline-flex items-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600">
+                                <svg
+                                  className="-ml-1 mr-3 h-5 w-5 animate-spin text-white"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <circle
+                                    className="opacity-25"
+                                    cx="12"
+                                    cy="12"
+                                    r="10"
+                                    stroke="currentColor"
+                                    stroke-width="4"
+                                  ></circle>
+                                  <path
+                                    className="opacity-75"
+                                    fill="currentColor"
+                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                  ></path>
+                                </svg>
+                                Loading ...
+                              </button>
+                            ) : (
+                              <button
+                                type="submit"
+                                className="relative ml-3 inline-flex items-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+                              >
+                                Submit
+                              </button>
+                            )}
+                          </>
                         )}
                       </div>
                     </nav>

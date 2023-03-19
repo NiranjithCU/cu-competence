@@ -7,20 +7,12 @@ export async function POST(request: NextRequest) {
   if (!data) {
     return NextResponse.json({ error: "no data" });
   }
-  
-  const assesment = await prisma.assesment.update({
-    where: {
-      id: +data.id,
-    },
+
+  const profile = await prisma.assesment.create({
     data: {
-      age: "<20",
-      answers: {
-        create: [
-          ...data.answers
-        ],
-      },
+      ...data,
     },
   });
 
-  return NextResponse.json(assesment);
+  return NextResponse.json(profile);
 }
