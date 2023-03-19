@@ -4,15 +4,12 @@ import Assessment from "../components/Assessment";
 import { prisma } from "@db";
 
 async function getRecords() {
-  return await prisma.area.findMany({
+  return await prisma.theme.findMany({
     include: {
-      competences: {
+      choices: true,
+      competence: {
         include: {
-          themes: {
-            include: {
-              choices: true,
-            },
-          },
+          area: true,
         },
       },
     },
@@ -21,7 +18,6 @@ async function getRecords() {
 
 export default async function Page() {
   const records = await getRecords();
-  console.dir(records, { depth: null });
   return (
     <div className="isolate bg-white">
       <div className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
@@ -51,7 +47,7 @@ export default async function Page() {
       </div>
       <main>
         <Nav />
-        <div className="mx-auto max-w-7xl px-6 py-24 sm:pt-32 lg:py-40 lg:px-8">
+        <div className="mx-auto max-w-7xl px-6 py-24 sm:pt-22 lg:py-30 lg:px-8">
           <Assessment records={records} />
         </div>
       </main>
