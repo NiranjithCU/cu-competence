@@ -109,7 +109,7 @@ model Competence {
   description String?
   area        Area?     @relation(fields: [areaId], references: [id])
   areaId      Int?
-  weight      Int?
+  weight      Float?
   themes      Theme[]
   answers     Answers[]
 }
@@ -125,7 +125,7 @@ model Theme {
   name         String?
   competence   Competence? @relation(fields: [competenceId], references: [id])
   competenceId Int?
-  weight       Int?
+  weight       Float?
   choices      Choice[]
   answers      Answers[]
 }
