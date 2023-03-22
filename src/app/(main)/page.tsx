@@ -1,9 +1,9 @@
 import Nav from "./components/Nav";
 import Link from "next/link";
 
-import { signIn } from "next-auth/react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
+import GetStarted from "./components/GetStarted";
 
 export default async function Page() {
   const session = await getServerSession(authOptions);
@@ -53,18 +53,12 @@ export default async function Page() {
                     <Link
                       href="/assessment/start"
                       className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                      >
+                    >
                       Get started
                     </Link>
                   </>
                 ) : (
-                  <a
-                    href="#"
-                    className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                    onClick={() => signIn("github")}
-                  >
-                    Get started
-                  </a>
+                  <GetStarted />
                 )}
               </div>
             </div>
