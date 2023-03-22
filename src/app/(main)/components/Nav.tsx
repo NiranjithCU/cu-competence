@@ -7,11 +7,6 @@ import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
-const navigation = [
-  { name: "Home", href: "/" },
-  { name: "Assessments", href: "/assessment" },
-];
-
 export default function Nav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { data: session } = useSession();
@@ -40,15 +35,21 @@ export default function Nav() {
           </button>
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
-          {navigation.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
+          <Link
+            href="/"
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
+            Home
+          </Link>
+
+          {session && (
+            <Link
+              href="/assessment"
               className="text-sm font-semibold leading-6 text-gray-900"
             >
-              {item.name}
-            </a>
-          ))}
+              Assessments
+            </Link>
+          )}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           {session ? (
@@ -56,9 +57,8 @@ export default function Nav() {
               <div className="text-sm font-semibold leading-6 text-gray-900">
                 Welcome, {session?.user?.name}
               </div>
-              {" - "}
               <button
-                className="text-sm font-semibold leading-6 text-gray-900"
+                className="ml-5 text-sm font-semibold leading-6 text-gray-900"
                 onClick={() => signOut()}
               >
                 Sign out
@@ -79,11 +79,7 @@ export default function Nav() {
           <div className="flex items-center justify-between">
             <Link href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
-              <img
-                className="h-8"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt=""
-              />
+              <img className="h-8" src="/" alt="" />
             </Link>
             <button
               type="button"
@@ -97,23 +93,45 @@ export default function Nav() {
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
-                {navigation.map((item) => (
+                <Link
+                  href="/"
+                  className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10"
+                >
+                  Home
+                </Link>
+                {session && (
                   <Link
-                    key={item.name}
-                    href={item.href}
+                    href="/assessment"
                     className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10"
                   >
-                    {item.name}
+                    Assessments
                   </Link>
-                ))}
+                )}
               </div>
+
               <div className="py-6">
-                <button
-                  className="-mx-3 block rounded-lg py-2.5 px-3 text-base font-semibold leading-6 text-gray-900 hover:bg-gray-400/10"
-                  onClick={() => signIn()}
-                >
-                  Sign in
-                </button>
+                {session ? (
+                  <>
+                    <div className="text-sm font-semibold leading-6 text-gray-900">
+                      Welcome, {session?.user?.name}
+                    </div>
+                    <a
+                      href="#"
+                      className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10"
+                      onClick={() => signOut()}
+                    >
+                      Sign out
+                    </a>
+                  </>
+                ) : (
+                  <a
+                    href="#"
+                    className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10"
+                    onClick={() => signIn("github")}
+                  >
+                    Sign in
+                  </a>
+                )}
               </div>
             </div>
           </div>

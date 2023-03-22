@@ -51,7 +51,7 @@ export default async function Page() {
             <div className="sm:flex sm:items-center">
               <div className="sm:flex-auto">
                 <h1 className="mb-2 text-2xl font-bold uppercase leading-10 tracking-tight text-gray-900">
-                Assessments
+                  Assessments
                 </h1>
                 <p className="mt-2 text-sm text-gray-700">
                   A list of all the assessments in your account
@@ -77,13 +77,19 @@ export default async function Page() {
                             scope="col"
                             className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                           >
+                            Program
+                          </th>
+                          <th
+                            scope="col"
+                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                          >
                             Semester
                           </th>
                           <th
                             scope="col"
                             className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                           >
-                            Program
+                            Date
                           </th>
                           <th
                             scope="col"
@@ -97,10 +103,17 @@ export default async function Page() {
                         {records.map((record) => (
                           <tr key={record.id}>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                              {record.program}
+                            </td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                               {record.semester}
                             </td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                              {record.program}
+                              {record.createdAt.toLocaleDateString('en-US', {
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric",
+                              })}
                             </td>
                             <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                               <Link

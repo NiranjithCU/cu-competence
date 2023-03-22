@@ -70,6 +70,7 @@ model Assesment {
   program  String?
   gender   String?
   semester String?
+  createdAt  DateTime   @default(now())
   answers  Answers[]
   feedback Feedback?
 }

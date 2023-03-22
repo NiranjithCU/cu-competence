@@ -1,4 +1,4 @@
-// export {};
+export {};
 
 // import { NextRequest, NextResponse } from "next/server";
 // import { prisma } from "@db";
