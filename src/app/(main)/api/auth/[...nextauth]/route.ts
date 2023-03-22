@@ -19,9 +19,6 @@ export const authOptions: NextAuthOptions = {
       checks: ["pkce"],
     }),
   ],
-  secret: process.env.NEXTAUTH_SECRET
-    ? process.env.NEXTAUTH_SECRET
-    : "NEXTAUTH_SECRET not found!",
   callbacks: {
     async session({ session, token, user }) {
       session.id = user.id;
