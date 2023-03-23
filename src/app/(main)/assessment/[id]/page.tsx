@@ -1,4 +1,6 @@
 import { prisma } from "@db";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../../api/auth/[...nextauth]/route";
 
 import Nav from "../../components/Nav";
 import Report from "../../components/Report";
@@ -53,6 +55,7 @@ async function getRecords(id: any) {
 }
 
 export default async function Page({ params }: any) {
+  const session = await getServerSession(authOptions);
   const report = await getRecords(params?.id);
 
   return (
@@ -84,12 +87,14 @@ export default async function Page({ params }: any) {
       </div>
       <main>
         <Nav />
-        <div className="sm:pt-22 lg:py-30 mx-auto max-w-7xl px-6 py-24 lg:px-8">
-          <h1 className="text-2xl font-bold uppercase leading-10 tracking-tight text-gray-900">
-            Assessments Report
-          </h1>
-          <Report report={report} />
-        </div>
+        {session && (
+          <div className="sm:pt-22 lg:py-30 mx-auto max-w-7xl px-6 py-24 lg:px-8">
+            <h1 className="text-2xl font-bold uppercase leading-10 tracking-tight text-gray-900">
+              Assessments Report
+            </h1>
+            <Report report={report} />
+          </div>
+        )}
       </main>
     </div>
   );
