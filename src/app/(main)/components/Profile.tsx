@@ -166,6 +166,7 @@ export default function Profile() {
                       <option value="2">Second</option>
                       <option value="3">Third</option>
                       <option value="4">Fourth</option>
+                      <option value="5">Alumni</option>
                     </Field>
 
                     <label
