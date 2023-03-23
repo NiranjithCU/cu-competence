@@ -61,18 +61,18 @@ model VerificationToken {
 // app schema
 
 model Assesment {
-  id       Int       @id @default(autoincrement())
-  user     User      @relation(fields: [userId], references: [id])
-  userId   String
-  age      String?
-  job      String?
-  country  String?
-  program  String?
-  gender   String?
-  semester String?
-  createdAt  DateTime   @default(now())
-  answers  Answers[]
-  feedback Feedback?
+  id        Int       @id @default(autoincrement())
+  user      User      @relation(fields: [userId], references: [id])
+  userId    String
+  age       String?
+  job       String?
+  country   String?
+  program   String?
+  gender    String?
+  semester  String?
+  createdAt DateTime  @default(now())
+  answers   Answers[]
+  feedback  Feedback?
 }
 
 model Answers {
@@ -90,10 +90,12 @@ model Answers {
 }
 
 model Feedback {
-  id          Int       @id @default(autoincrement())
-  easyToUse   String?
-  assesment   Assesment @relation(fields: [assesmentId], references: [id])
-  assesmentId Int       @unique
+  id               Int       @id @default(autoincrement())
+  easyToUse        String?
+  easyToUnderstand String?
+  goodChoices      String?
+  assesment        Assesment @relation(fields: [assesmentId], references: [id])
+  assesmentId      Int       @unique
 }
 
 model Area {
