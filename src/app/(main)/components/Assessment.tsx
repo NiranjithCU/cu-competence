@@ -42,7 +42,7 @@ export default function Assessment({ records, assessmentId }: AssesmentProps) {
     <>
       {session && (
         <Formik
-          initialValues={QA()}
+          initialValues={{}}
           onSubmit={async (values, actions) => {
             const answers: any[] = [];
 
