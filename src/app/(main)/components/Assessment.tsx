@@ -90,6 +90,9 @@ export default function Assessment({ records, assessmentId }: AssesmentProps) {
 
                     {/* Content */}
                     <div className="h-[25rem] bg-white px-4 py-5 sm:p-6">
+                      <p className="mb-2 text-sm text-gray-500">
+                        Choose the option that most fits your ability
+                      </p>
                       {record.choices.map((choice: any) => (
                         <div key={choice.id} className="flex items-center">
                           <Field
@@ -158,7 +161,10 @@ export default function Assessment({ records, assessmentId }: AssesmentProps) {
                           {question === records.length - 1 && (
                             <>
                               {isSubmitting ? (
-                                <button className="relative ml-3 inline-flex items-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" disabled>
+                                <button
+                                  className="relative ml-3 inline-flex items-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+                                  disabled
+                                >
                                   <svg
                                     className="-ml-1 mr-3 h-5 w-5 animate-spin text-white"
                                     xmlns="http://www.w3.org/2000/svg"
