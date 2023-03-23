@@ -1,9 +1,9 @@
-import Nav from "../../components/Nav";
-
 import { prisma } from "@db";
+
+import Nav from "../../components/Nav";
 import Report from "../../components/Report";
 
-async function getRecords() {
+async function getRecords(id: any) {
   const areas = await prisma.area.findMany({
     include: {
       competences: {
@@ -15,6 +15,9 @@ async function getRecords() {
   });
 
   const answers = await prisma.answers.findMany({
+    where: {
+      assesmentId: +id,
+    },
     include: {
       choice: true,
     },
@@ -50,7 +53,7 @@ async function getRecords() {
 }
 
 export default async function Page({ params }: any) {
-  const report = await getRecords();
+  const report = await getRecords(params?.id);
 
   return (
     <div className="isolate bg-white">

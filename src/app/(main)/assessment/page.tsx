@@ -9,6 +9,7 @@ async function getRecords(id: any) {
   return await prisma.assesment.findMany({
     where: {
       userId: id,
+
     },
   });
 }
@@ -16,7 +17,7 @@ async function getRecords(id: any) {
 export default async function Page() {
   const session = await getServerSession(authOptions);
   const records = await getRecords(session?.id);
-
+  
   return (
     <div className="isolate bg-white">
       <div className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
@@ -109,7 +110,7 @@ export default async function Page() {
                               {record.semester}
                             </td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                              {record.createdAt.toLocaleDateString('en-US', {
+                              {record.createdAt.toLocaleDateString("en-US", {
                                 year: "numeric",
                                 month: "long",
                                 day: "numeric",
