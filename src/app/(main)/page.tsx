@@ -7,7 +7,6 @@ import GetStarted from "./components/GetStarted";
 
 export default async function Page() {
   const session = await getServerSession(authOptions);
-  console.log(process.env.NEXTAUTH_URL)
   return (
     <div className="isolate bg-white">
       <div className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">

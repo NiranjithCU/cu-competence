@@ -21,12 +21,15 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async session({ session, token, user }) {
+      console.log(session)
+      console.log(token)
+      console.log(user)
       session.id = user.id;
       return session;
     },
   },
 };
-console.log(process.env)
+
 const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
 

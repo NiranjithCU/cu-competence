@@ -67,7 +67,7 @@ export default function Nav() {
           ) : (
             <button
               className="text-sm font-semibold leading-6 text-gray-900"
-              onClick={() => signIn()}
+              onClick={() => signIn("google")}
             >
               Sign in
             </button>
@@ -127,7 +127,7 @@ export default function Nav() {
                   <Link
                     href="#"
                     className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10"
-                    onClick={() => signIn()}
+                    onClick={() => signIn("google")}
                   >
                     Sign in
                   </Link>

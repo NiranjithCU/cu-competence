@@ -15,9 +15,7 @@ export default function Profile() {
         <Formik
           initialValues={{}}
           onSubmit={async (values, actions) => {
-            console.log(session);
             const profile = { ...values, userId: session.id };
-            console.log(profile);
             const response = await fetch("/api/profile", {
               method: "POST",
               headers: {
