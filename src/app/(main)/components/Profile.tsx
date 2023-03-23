@@ -91,7 +91,8 @@ export default function Profile() {
                     >
                       <option value="">Select Age</option>
                       <option value="<20">{"< 20"}</option>
-                      <option value="21-40">{"21 - 40"}</option>
+                      <option value="21-30">{"21 - 30"}</option>
+                      <option value="31-40">{"31 - 40"}</option>
                       <option value="41-60">{"41 - 60"}</option>
                       <option value=">60">{"> 60"}</option>
                     </Field>

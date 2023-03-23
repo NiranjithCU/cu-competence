@@ -15,14 +15,14 @@ export default function Nav() {
     <div className="px-6 pt-6 lg:px-8">
       <nav className="flex items-center justify-between" aria-label="Global">
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
+          <Link href="/" className="-m-1.5 p-1.5">
+            <span className="sr-only">CU-Competence</span>
             <img
               className="h-8"
               src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
               alt=""
             />
-          </a>
+          </Link>
         </div>
         <div className="flex lg:hidden">
           <button
@@ -59,7 +59,7 @@ export default function Nav() {
               </div>
               <button
                 className="ml-5 text-sm font-semibold leading-6 text-gray-900"
-                onClick={() => signOut({ callbackUrl: '/' })}
+                onClick={() => signOut({ callbackUrl: "/" })}
               >
                 Sign out
               </button>
@@ -79,7 +79,11 @@ export default function Nav() {
           <div className="flex items-center justify-between">
             <Link href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
-              <img className="h-8" src="/" alt="" />
+              <img
+                className="h-8"
+                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                alt=""
+              />
             </Link>
             <button
               type="button"
@@ -118,7 +122,7 @@ export default function Nav() {
                     <Link
                       href="#"
                       className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10"
-                      onClick={() => signOut({ callbackUrl: '/' })}
+                      onClick={() => signOut({ callbackUrl: "/" })}
                     >
                       Sign out
                     </Link>
