@@ -89,7 +89,7 @@ export default function Assessment({ records, assessmentId }: AssesmentProps) {
                     {/* /Header */}
 
                     {/* Content */}
-                    <div className="h-[25rem] bg-white px-4 py-5 sm:p-6">
+                    <div className="min-h-[25rem] bg-white px-4 py-5 sm:p-6">
                       <p className="mb-2 text-sm text-gray-500">
                         Choose the option that most fits your ability
                       </p>
