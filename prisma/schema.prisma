@@ -94,6 +94,7 @@ model Feedback {
   easyToUse        String?
   easyToUnderstand String?
   goodChoices      String?
+  notes            String?
   assesment        Assesment @relation(fields: [assesmentId], references: [id])
   assesmentId      Int       @unique
 }
