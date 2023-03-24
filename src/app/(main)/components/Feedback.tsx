@@ -22,7 +22,7 @@ export default function Feedback({ assessmentId }: FeedbackProps) {
               headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify({ id: assessmentId, values }),
+              body: JSON.stringify({ id: assessmentId, feedback: values }),
             });
 
             if (response.status === 200) {
@@ -80,7 +80,7 @@ export default function Feedback({ assessmentId }: FeedbackProps) {
                       className="mt-5 block text-sm font-medium leading-6  text-gray-900"
                     >
                       The questions were easy to understand and coverd a good
-                      ranage
+                      range
                     </label>
                     <Field
                       as="select"
