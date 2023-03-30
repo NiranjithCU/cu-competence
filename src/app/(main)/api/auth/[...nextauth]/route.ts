@@ -21,41 +21,41 @@ export const authOptions: NextAuthOptions = {
       clientSecret: `${process.env.GOOGLE_CLIENT_SECRET}`,
       checks: ["none"],
     }),
-    // CredentialsProvider({
-    //   id: "credentials",
-    //   name: "Credentials",
-    //   credentials: {
-    //     email: {
-    //       label: "Email",
-    //       type: "text",
-    //       placeholder: "email@cu.ca",
-    //     },
-    //     password: {
-    //       label: "Password",
-    //       type: "password",
-    //     },
-    //   },
-    //   authorize: async (credentials, req) => {
-    //     if (!credentials) {
-    //       throw new Error("Wrong credentials. Try again.");
-    //     }
-    //     const hashPassword = (password: string) => {
-    //       return sha256(password).toString();
-    //     };
+    CredentialsProvider({
+      id: "credentials",
+      name: "Credentials",
+      credentials: {
+        email: {
+          label: "Email",
+          type: "text",
+          placeholder: "email@cu.ca",
+        },
+        password: {
+          label: "Password",
+          type: "password",
+        },
+      },
+      authorize: async (credentials, req) => {
+        if (!credentials) {
+          throw new Error("Wrong credentials. Try again.");
+        }
+        const hashPassword = (password: string) => {
+          return sha256(password).toString();
+        };
 
-    //     const user = await prisma.user.findUnique({
-    //       where: {
-    //         email: credentials?.email,
-    //       },
-    //     });
+        const user = await prisma.user.findUnique({
+          where: {
+            email: credentials?.email,
+          },
+        });
 
-    //     if (user && user.password === hashPassword(credentials.password)) {
-    //       return { name: user.name, email: user.email, id: user.id };
-    //     }
+        if (user && user.password === hashPassword(credentials.password)) {
+          return { name: user.name, email: user.email, id: user.id };
+        }
 
-    //     throw new Error("Wrong credentials. Try again.");
-    //   },
-    // }),
+        throw new Error("Wrong credentials. Try again.");
+      },
+    }),
   ],
   callbacks: {
     async session({ session, token, user }) {
