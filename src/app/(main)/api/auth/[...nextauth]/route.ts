@@ -39,6 +39,7 @@ export const authOptions: NextAuthOptions = {
         if (!credentials) {
           throw new Error("Wrong credentials. Try again.");
         }
+
         const hashPassword = (password: string) => {
           return sha256(password).toString();
         };
@@ -50,20 +51,29 @@ export const authOptions: NextAuthOptions = {
         });
 
         if (user && user.password === hashPassword(credentials.password)) {
-          return { name: user.name, email: user.email, id: user.id };
+          return {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            image: user.image,
+          };
         }
-
-        throw new Error("Wrong credentials. Try again.");
+        return user;
       },
     }),
   ],
   callbacks: {
     async session({ session, token, user }) {
-      session.id = user.id;
-      console.log(session)
-      console.log(user)
+      session.user = {
+        name: token.name,
+        email: token.email,
+        id: token.sub,
+      };
       return session;
     },
+  },
+  session: {
+    strategy: "jwt",
   },
 };
 
@@ -72,6 +82,10 @@ export { handler as GET, handler as POST };
 
 declare module "next-auth" {
   export interface Session {
-    id: string;
+    user: {
+      name: string | null | undefined;
+      email: string | null | undefined;
+      id: string | null | undefined;
+    };
   }
 }

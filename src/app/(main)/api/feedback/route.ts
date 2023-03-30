@@ -7,8 +7,6 @@ export async function POST(request: NextRequest) {
   if (!data) {
     return NextResponse.json({ error: "no data" });
   }
-  
-  console.log(data.feedback)
 
   const assesment = await prisma.assesment.update({
     where: {

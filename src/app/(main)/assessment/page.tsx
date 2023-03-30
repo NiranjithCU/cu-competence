@@ -16,7 +16,7 @@ async function getRecords(id: any) {
 
 export default async function Page() {
   const session = await getServerSession(authOptions);
-  const records = await getRecords(session?.id);
+  const records = await getRecords(session?.user.id);
 
   return (
     <div className="isolate bg-white">
