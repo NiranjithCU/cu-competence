@@ -7,7 +7,7 @@ import { Field, Form, Formik } from "formik";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 
-export default function Login({ token }: { token: string }) {
+export default function Login({ token }: { token: string| undefined }) {
   const router = useRouter();
   const [failed, setFailed] = useState(false);
 
