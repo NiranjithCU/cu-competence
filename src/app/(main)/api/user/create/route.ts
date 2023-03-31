@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import sha256 from "crypto-js/sha256";
 import { prisma } from "@db";
+
+import sha256 from "crypto-js/sha256";
 
 // POST /api/user/:id
 export async function POST(request: NextRequest) {

@@ -24,15 +24,17 @@ export default function Login({ token }: { token: string | undefined }) {
           setFailed(false);
 
           const result = await signIn("credentials", {
-            redirect: false,
             email: values.email,
+            redirect: false,
             password: values.password,
+            callbackUrl: "/",
           });
 
           if (result?.status === 200) {
             if (result?.error === null) {
               router.push("/");
             }
+            setFailed(true);
           } else {
             setFailed(true);
           }

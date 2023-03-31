@@ -21,13 +21,11 @@ export const authOptions: NextAuthOptions = {
       checks: ["none"],
     }),
     CredentialsProvider({
-      id: "credentials",
-      name: "Credentials",
       credentials: {
         email: {
           label: "Email",
           type: "text",
-          placeholder: "email@cu.ca",
+          placeholder: "Enter email",
         },
         password: {
           label: "Password",
@@ -43,7 +41,7 @@ export const authOptions: NextAuthOptions = {
           return sha256(password).toString();
         };
 
-        const user = await prisma.user.findUnique({
+        const user: any = await prisma.user.findUnique({
           where: {
             email: credentials?.email,
           },
@@ -57,12 +55,13 @@ export const authOptions: NextAuthOptions = {
             image: user.image,
           };
         }
-        return user;
+        return null;
       },
     }),
   ],
   callbacks: {
     async signIn({ user, account, profile }) {
+      // console.log({ user, account, profile })
       return true;
     },
     async session({ session, token, user }) {
@@ -83,7 +82,6 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/auth/login",
   },
-  debug: true
 };
 
 const handler = NextAuth(authOptions);
