@@ -1,4 +1,3 @@
-
 import Login from "../../components/Login";
 import { getCsrfToken } from "next-auth/react";
 
@@ -20,7 +19,7 @@ export default async function Page() {
 
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
-            <Login token={csrfToken}/>
+            <Login token={csrfToken ? csrfToken : ""} />
           </div>
         </div>
       </div>

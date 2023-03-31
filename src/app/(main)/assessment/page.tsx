@@ -6,7 +6,7 @@ import Nav from "../components/Nav";
 import Link from "next/link";
 
 async function getRecords(id: any) {
-  console.log(id);
+  // console.log(id);
   return await prisma.assesment.findMany({
     where: {
       userId: id,

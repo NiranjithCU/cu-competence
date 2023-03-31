@@ -80,10 +80,10 @@ export default function Assessment({ records, assessmentId }: AssesmentProps) {
                     {/* Header */}
                     <div className="px-4 py-5 sm:px-6">
                       <h3 className="text-base font-semibold leading-6 text-gray-900">
-                        {record.competence.name}
+                         {record.name}
                       </h3>
                       <p className="mt-1 text-sm text-gray-500">
-                        {record.name}
+                        {record.competence.name}
                       </p>
                     </div>
                     {/* /Header */}
@@ -91,7 +91,7 @@ export default function Assessment({ records, assessmentId }: AssesmentProps) {
                     {/* Content */}
                     <div className="min-h-[25rem] bg-white px-4 py-5 sm:p-6">
                       <p className="mb-2 text-sm text-gray-500">
-                        Choose the option that most fits your ability
+                        Choose the statment that most fits your ability
                       </p>
                       {record.choices.map((choice: any) => (
                         <div key={choice.id} className="flex items-center">
@@ -127,7 +127,7 @@ export default function Assessment({ records, assessmentId }: AssesmentProps) {
                       >
                         <div className="hidden sm:block">
                           <p className="text-sm text-gray-700">
-                            Question{" "}
+                            Progress{" "}
                             <span className="font-medium">{question + 1}</span>{" "}
                             of{" "}
                             <span className="font-medium">

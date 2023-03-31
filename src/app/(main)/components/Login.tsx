@@ -7,7 +7,7 @@ import { Field, Form, Formik } from "formik";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 
-export default function Login({ token }: { token: string| undefined }) {
+export default function Login({ token }: { token: string | undefined }) {
   const router = useRouter();
   const [failed, setFailed] = useState(false);
 
@@ -58,7 +58,6 @@ export default function Login({ token }: { token: string| undefined }) {
               </div>
             )}
 
-            <input name="csrfToken" type="hidden" defaultValue={token} />
             <div>
               <label
                 htmlFor="email"
@@ -114,7 +113,7 @@ export default function Login({ token }: { token: string| undefined }) {
                       cy="12"
                       r="10"
                       stroke="currentColor"
-                      stroke-width="4"
+                      strokeWidth="4"
                     ></circle>
                     <path
                       className="opacity-75"
@@ -153,7 +152,7 @@ export default function Login({ token }: { token: string| undefined }) {
           <div>
             <a
               href="#"
-              onClick={() => signIn("google", { callbackUrl: "/"})}
+              onClick={() => signIn("google", { callbackUrl: "/" })}
               className="inline-flex w-full justify-center rounded-md bg-white px-4 py-2 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0"
             >
               <span className="sr-only">Sign in with Google</span>

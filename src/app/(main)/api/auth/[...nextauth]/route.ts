@@ -1,4 +1,3 @@
-import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
@@ -63,6 +62,9 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
+    async signIn({ user, account, profile }) {
+      return true;
+    },
     async session({ session, token, user }) {
       session.user = {
         name: token.name,
@@ -71,13 +73,17 @@ export const authOptions: NextAuthOptions = {
       };
       return session;
     },
+    async jwt({ token, user, account, profile, isNewUser }) {
+      return token;
+    },
   },
   session: {
     strategy: "jwt",
   },
   pages: {
-    signIn: "/auth/login"
-  }
+    signIn: "/auth/login",
+  },
+  debug: true
 };
 
 const handler = NextAuth(authOptions);
