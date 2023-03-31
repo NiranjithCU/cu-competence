@@ -9,7 +9,7 @@ export default function Register() {
   const router = useRouter();
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Username is required"),
-    email: Yup.string().email().required("Username is required"),
+    email: Yup.string().email().required("Email is required"),
     password: Yup.string().min(6).required("Password is required"),
     confirmPassword: Yup.string()
       .required("Confirm password is required")
