@@ -57,7 +57,7 @@ export default function Feedback({ assessmentId }: FeedbackProps) {
                       htmlFor="job"
                       className="mt-5 block text-sm font-medium leading-6  text-gray-900"
                     >
-                      The tool was easy to use
+                      How did you rate the overall experience?
                     </label>
                     <Field
                       as="select"
@@ -67,20 +67,18 @@ export default function Feedback({ assessmentId }: FeedbackProps) {
                       className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     >
                       <option value="">Select</option>
-                      <option value="Strongly agree">Strongly Agree</option>
-                      <option value="Agree">Agree</option>
-                      <option value="Disagree">Disagree</option>
-                      <option value="Strongly Disagree">
-                        Strongly Disagree
-                      </option>
+                      <option value="Excellent">Excellent</option>
+                      <option value="Good">Good</option>
+                      <option value="Average">Average</option>
+                      <option value="Poor">Poor</option>
+                      <option value="Very Poor">Very Poor</option>
                     </Field>
 
                     <label
                       htmlFor="job"
                       className="mt-5 block text-sm font-medium leading-6  text-gray-900"
                     >
-                      The questions were easy to understand and coverd a good
-                      range
+                      What did you feel about the wording overall?
                     </label>
                     <Field
                       as="select"
@@ -90,11 +88,20 @@ export default function Feedback({ assessmentId }: FeedbackProps) {
                       className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     >
                       <option value="">Select</option>
-                      <option value="Strongly agree">Strongly Agree</option>
-                      <option value="Agree">Agree</option>
-                      <option value="Disagree">Disagree</option>
-                      <option value="Strongly Disagree">
-                        Strongly Disagree
+                      <option value="Far too simplistic language">
+                        Far too simplistic language
+                      </option>
+                      <option value="Somewhat easy to understand">
+                        Somewhat easy to understand
+                      </option>
+                      <option value="Neither easy nor hard">
+                        Neither easy nor hard
+                      </option>
+                      <option value="Somewhat hard to understand">
+                        Somewhat hard to understand
+                      </option>
+                      <option value="Far too hard language">
+                        Far too hard language
                       </option>
                     </Field>
 
@@ -102,22 +109,86 @@ export default function Feedback({ assessmentId }: FeedbackProps) {
                       htmlFor="job"
                       className="mt-5 block text-sm font-medium leading-6  text-gray-900"
                     >
-                      The choices were reasonable and covered a good range
+                      What did you feel about the length of the test?
                     </label>
                     <Field
                       as="select"
-                      id="goodChoices"
-                      name="goodChoices"
+                      id="assessmentLength"
+                      name="assessmentLength"
                       required
                       className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     >
                       <option value="">Select</option>
-                      <option value="Strongly agree">Strongly Agree</option>
-                      <option value="Agree">Agree</option>
-                      <option value="Disagree">Disagree</option>
-                      <option value="Strongly Disagree">
-                        Strongly Disagree
-                      </option>
+                      <option value="Much too short">Much too short</option>
+                      <option value="A little short">A little short</option>
+                      <option value="Just right">Just right</option>
+                      <option value="A bit too long">A bit too long</option>
+                      <option value="Far too long">Far too long</option>
+                    </Field>
+
+
+                    <label
+                      htmlFor="job"
+                      className="mt-5 block text-sm font-medium leading-6  text-gray-900"
+                    >
+                      What did you feel about the difficulty of the test?
+                    </label>
+                    <Field
+                      as="select"
+                      id="difficultyLevel"
+                      name="difficultyLevel"
+                      required
+                      className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    >
+                      <option value="">Select</option>
+                      <option value="Far too difficult">Far too difficult</option>
+                      <option value="A little bit difficult">A little bit difficult</option>
+                      <option value="Neither easy nor difficult">Neither easy nor difficult</option>
+                      <option value="A bit too easy">A bit too easy</option>
+                      <option value="Far too easy">Far too easy</option>
+                    </Field>
+
+
+                    <label
+                      htmlFor="job"
+                      className="mt-5 block text-sm font-medium leading-6  text-gray-900"
+                    >
+                      What did you feel about the details of the results of the test?
+                    </label>
+                    <Field
+                      as="select"
+                      id="goodResults"
+                      name="goodResults"
+                      required
+                      className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    >
+                      <option value="">Select</option>
+                      <option value="Far too little detail">Far too little detail</option>
+                      <option value="A little short on detail">A little short on detail</option>
+                      <option value="Just right">Just right</option>
+                      <option value="A bit too much detail">A bit too much detail</option>
+                      <option value="Far too much detail">Far too much detail</option>
+                    </Field>
+
+                    <label
+                      htmlFor="job"
+                      className="mt-5 block text-sm font-medium leading-6  text-gray-900"
+                    >
+                      Do you think that you understand more about the range of entreprenurial and digital competences now that you have completed the test?
+                    </label>
+                    <Field
+                      as="select"
+                      id="competenceRange"
+                      name="competenceRange"
+                      required
+                      className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    >
+                      <option value="">Select</option>
+                      <option value="Yes, definitely">Yes, definitely</option>
+                      <option value="Yes, probably">Yes, probably</option>
+                      <option value="Maybe">Maybe</option>
+                      <option value="Probably not">Probably not</option>
+                      <option value="Definitely not">Definitely not</option>
                     </Field>
 
                     <label
@@ -133,7 +204,7 @@ export default function Feedback({ assessmentId }: FeedbackProps) {
                         id="notes"
                         placeholder="Other"
                         className="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6"
-                        />
+                      />
                     </div>
                   </div>
                   {/* /Content */}
@@ -141,7 +212,10 @@ export default function Feedback({ assessmentId }: FeedbackProps) {
                   {/* Footer */}
                   <div className="bg-gray-50 px-4 py-4 sm:px-6">
                     {isSubmitting ? (
-                      <button className="relative ml-3 inline-flex items-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" disabled>
+                      <button
+                        className="relative ml-3 inline-flex items-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+                        disabled
+                      >
                         <svg
                           className="-ml-1 mr-3 h-5 w-5 animate-spin text-white"
                           xmlns="http://www.w3.org/2000/svg"

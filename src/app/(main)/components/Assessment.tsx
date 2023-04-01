@@ -13,7 +13,7 @@ export default function Assessment({ records, assessmentId }: AssesmentProps) {
   const router = useRouter();
   const { data: session } = useSession();
 
-  const [question, setQuestion] = useState(0);
+  const [question, setQuestion] = useState(45);
   const record = records[question];
 
   const nextQuestion = (q: number) => {
@@ -74,25 +74,25 @@ export default function Assessment({ records, assessmentId }: AssesmentProps) {
               {record && (
                 <div key={record.id}>
                   <h2 className="mb-2 text-2xl font-bold uppercase leading-10 tracking-tight text-gray-900">
-                    {record.competence.area.name}
+                    {record.competence.area.name} - {record.competence.name}
                   </h2>
+                  <p className="my-4 text-sm text-black">
+                    <span className="font-semibold">Description:</span>{" "}
+                    {record.competence.description}
+                  </p>
                   <div className="overflow-hidden rounded-lg bg-gray-50 shadow">
                     {/* Header */}
                     <div className="px-4 py-5 sm:px-6">
                       <h3 className="text-base font-semibold leading-6 text-gray-900">
-                         {record.name}
+                        {record.competence.area.type == "Entrepreneurial"
+                          ? `Select the statement that best describes your ability to "${record.name}" ?`
+                          : record.name}
                       </h3>
-                      <p className="mt-1 text-sm text-gray-500">
-                        {record.competence.name}
-                      </p>
                     </div>
                     {/* /Header */}
 
                     {/* Content */}
                     <div className="min-h-[25rem] bg-white px-4 py-5 sm:p-6">
-                      <p className="mb-2 text-sm text-gray-500">
-                        Choose the statment that most fits your ability
-                      </p>
                       {record.choices.map((choice: any) => (
                         <div key={choice.id} className="flex items-center">
                           <Field

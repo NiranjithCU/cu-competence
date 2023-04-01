@@ -39,9 +39,9 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  accessToken  String?   @unique
+  accessToken  String?  @unique
   createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt @default(now())
+  updatedAt    DateTime @default(now()) @updatedAt
 }
 
 model User {
@@ -52,7 +52,7 @@ model User {
   password      String?
   image         String?
   createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt @default(now())
+  updatedAt     DateTime    @default(now()) @updatedAt
   accounts      Account[]
   sessions      Session[]
   assesments    Assesment[]
@@ -69,18 +69,20 @@ model VerificationToken {
 // app schema
 
 model Assesment {
-  id        Int       @id @default(autoincrement())
-  user      User      @relation(fields: [userId], references: [id])
-  userId    String
-  age       String?
-  job       String?
-  country   String?
-  program   String?
-  gender    String?
-  semester  String?
-  createdAt DateTime  @default(now())
-  answers   Answers[]
-  feedback  Feedback?
+  id          Int       @id @default(autoincrement())
+  user        User      @relation(fields: [userId], references: [id])
+  userId      String
+  age         String?
+  job         String?
+  country     String?
+  program     String?
+  gender      String?
+  semester    String?
+  entreprenur String?
+  rolemodel   String?
+  createdAt   DateTime  @default(now())
+  answers     Answers[]
+  feedback    Feedback?
 }
 
 model Answers {
@@ -99,9 +101,13 @@ model Answers {
 
 model Feedback {
   id               Int       @id @default(autoincrement())
+  goodChoices      String?
   easyToUse        String?
   easyToUnderstand String?
-  goodChoices      String?
+  assessmentLength String?
+  difficultyLevel  String?
+  goodResults      String?
+  competenceRange  String?
   notes            String?
   assesment        Assesment @relation(fields: [assesmentId], references: [id])
   assesmentId      Int       @unique
