@@ -77,7 +77,7 @@ export default function Report({ report }: any) {
                         <div className="mt-4 flex-shrink-0 sm:mt-0 sm:ml-5">
                           <div className="flex -space-x-1 overflow-hidden">
                             <span
-                              className={`inline-flex items-center rounded-md bg-green-100 px-2.5 py-0.5 text-sm font-medium  ${
+                              className={`inline-flex items-center rounded-md px-2.5 py-0.5 text-sm font-medium  ${
                                 scoreLevel(competence.score, competence.weight)
                                   .badge.text
                               }
