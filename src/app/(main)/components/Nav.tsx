@@ -10,7 +10,7 @@ import Link from "next/link";
 export default function Nav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { data: session } = useSession();
-  console.log(session);
+
   return (
     <div className="px-6 pt-6 lg:px-8">
       <nav className="flex items-center justify-between" aria-label="Global">
