@@ -44,7 +44,7 @@ export default function Register() {
           if (response.status === 200) {
             const data = await response.json();
             if (data.id) {
-              router.push(`/`);
+              router.push(`/auth/login`);
             }
           } else {
             alert("Email already registered, try again");

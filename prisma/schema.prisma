@@ -97,6 +97,8 @@ model Answers {
   themeId      Int?
   choice       Choice?     @relation(fields: [choiceId], references: [id])
   choiceId     Int?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @default(now()) @updatedAt
 }
 
 model Feedback {
@@ -111,6 +113,8 @@ model Feedback {
   notes            String?
   assesment        Assesment @relation(fields: [assesmentId], references: [id])
   assesmentId      Int       @unique
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @default(now()) @updatedAt
 }
 
 model Area {
