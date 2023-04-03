@@ -13,7 +13,7 @@ export default function Assessment({ records, assessmentId }: AssesmentProps) {
   const router = useRouter();
   const { data: session } = useSession();
 
-  const [question, setQuestion] = useState(45);
+  const [question, setQuestion] = useState(0);
   const record = records[question];
 
   const nextQuestion = (q: number) => {
