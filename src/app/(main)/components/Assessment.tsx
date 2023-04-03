@@ -38,11 +38,18 @@ export default function Assessment({ records, assessmentId }: AssesmentProps) {
     return initial;
   };
 
+  const updateStorage = (values: any) => {
+    localStorage.setItem("cu-assessment", JSON.stringify(values));
+  };
+
   return (
     <>
       {session && (
         <Formik
-          initialValues={{}}
+          initialValues={localStorage.getItem("cu-assessment")
+          ? JSON.parse(localStorage.getItem("cu-assessment") || "")
+          : {}}
+          
           onSubmit={async (values, actions) => {
             const answers: any[] = [];
 
@@ -57,6 +64,8 @@ export default function Assessment({ records, assessmentId }: AssesmentProps) {
               },
               body: JSON.stringify({ id: assessmentId, answers }),
             });
+
+            localStorage.removeItem("cu-assessment");
 
             if (response.status === 200) {
               const data = await response.json();
@@ -205,6 +214,7 @@ export default function Assessment({ records, assessmentId }: AssesmentProps) {
                 </div>
               )}
               {/* Questions */}
+              {updateStorage(values)}
             </Form>
           )}
         </Formik>
