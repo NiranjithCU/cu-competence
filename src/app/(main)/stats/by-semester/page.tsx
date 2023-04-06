@@ -21,7 +21,6 @@ async function getRecords() {
   });
 
   function sortResultsByAgeAndScore(results: any) {
-
     const resultsByAge = results.reduce((acc: any, result: any) => {
       const age = result.assesment.semester;
       if (!acc[age]) {
@@ -44,7 +43,45 @@ async function getRecords() {
       const ageResults = resultsByAge[age];
       const minScore = ageResults[0].score;
       const maxScore = ageResults[ageResults.length - 1].score;
-      return { semester: age, minScore, maxScore };
+      const sumScore = ageResults.reduce(
+        (acc: number, result: any) => acc + result.score,
+        0
+      );
+      const meanScore = sumScore / ageResults.length;
+      const medianIndex = Math.floor(ageResults.length / 2);
+      const medianScore =
+        ageResults.length % 2 === 0
+          ? (ageResults[medianIndex - 1].score +
+              ageResults[medianIndex].score) /
+            2
+          : ageResults[medianIndex].score;
+      const scoreCounts = ageResults.reduce((acc: any, result: any) => {
+        if (!acc[result.score]) {
+          acc[result.score] = 0;
+        }
+        acc[result.score]++;
+        return acc;
+      }, {});
+      const scores = ageResults.map((result: any) => result.score);
+      const modeScore = Object.keys(scoreCounts).reduce(
+        (a: string, b: string) => (scoreCounts[a] > scoreCounts[b] ? a : b)
+      );
+      const variance =
+        scores.reduce(
+          (acc: number, score: number) => acc + Math.pow(score - meanScore, 2),
+          0
+        ) / scores.length;
+      const stdDev = Math.sqrt(variance);
+      return {
+        semester: age,
+        minScore,
+        maxScore,
+        meanScore: meanScore.toFixed(2),
+        medianScore,
+        modeScore,
+        stdDev: stdDev.toFixed(2),
+        variance: variance.toFixed(2),
+      };
     });
 
     // Return the final array sorted by age
@@ -115,13 +152,61 @@ export default async function Page() {
                                 scope="col"
                                 className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                               >
-                                Min ({semester.semester === "5"? "Alumni": semester.semester })
+                                Min (
+                                {semester.semester === "5"
+                                  ? "Alumni"
+                                  : semester.semester}
+                                )
                               </th>
                               <th
                                 scope="col"
                                 className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                               >
-                                Max ({semester.semester === "5"? "Alumni": semester.semester })
+                                Max (
+                                {semester.semester === "5"
+                                  ? "Alumni"
+                                  : semester.semester}
+                                )
+                              </th>
+                              <th
+                                scope="col"
+                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                              >
+                                Mean ({semester.semester === "5"
+                                  ? "Alumni"
+                                  : semester.semester})
+                              </th>
+                              <th
+                                scope="col"
+                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                              >
+                                Median ({semester.semester === "5"
+                                  ? "Alumni"
+                                  : semester.semester})
+                              </th>
+                              <th
+                                scope="col"
+                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                              >
+                                Mode ({semester.semester === "5"
+                                  ? "Alumni"
+                                  : semester.semester})
+                              </th>
+                              <th
+                                scope="col"
+                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                              >
+                                SD ({semester.semester === "5"
+                                  ? "Alumni"
+                                  : semester.semester})
+                              </th>
+                              <th
+                                scope="col"
+                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                              >
+                                Variance ({semester.semester === "5"
+                                  ? "Alumni"
+                                  : semester.semester})
                               </th>
                             </>
                           ))}
@@ -140,6 +225,21 @@ export default async function Page() {
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                   {semester.maxScore}
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  {semester.meanScore}
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  {semester.medianScore}
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  {semester.modeScore}
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  {semester.stdDev}
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  {semester.variance}
                                 </td>
                               </>
                             ))}

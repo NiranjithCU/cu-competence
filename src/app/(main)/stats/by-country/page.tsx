@@ -43,7 +43,45 @@ async function getRecords() {
       const ageResults = resultsByAge[age];
       const minScore = ageResults[0].score;
       const maxScore = ageResults[ageResults.length - 1].score;
-      return { country: age, minScore, maxScore };
+      const sumScore = ageResults.reduce(
+        (acc: number, result: any) => acc + result.score,
+        0
+      );
+      const meanScore = sumScore / ageResults.length;
+      const medianIndex = Math.floor(ageResults.length / 2);
+      const medianScore =
+        ageResults.length % 2 === 0
+          ? (ageResults[medianIndex - 1].score +
+              ageResults[medianIndex].score) /
+            2
+          : ageResults[medianIndex].score;
+      const scoreCounts = ageResults.reduce((acc: any, result: any) => {
+        if (!acc[result.score]) {
+          acc[result.score] = 0;
+        }
+        acc[result.score]++;
+        return acc;
+      }, {});
+      const scores = ageResults.map((result: any) => result.score);
+      const modeScore = Object.keys(scoreCounts).reduce(
+        (a: string, b: string) => (scoreCounts[a] > scoreCounts[b] ? a : b)
+      );
+      const variance =
+        scores.reduce(
+          (acc: number, score: number) => acc + Math.pow(score - meanScore, 2),
+          0
+        ) / scores.length;
+      const stdDev = Math.sqrt(variance);
+      return {
+        country: age,
+        minScore,
+        maxScore,
+        meanScore: meanScore.toFixed(2),
+        medianScore,
+        modeScore,
+        stdDev: stdDev.toFixed(2),
+        variance: variance.toFixed(2),
+      };
     });
 
     // Return the final array sorted by age
@@ -122,6 +160,36 @@ export default async function Page() {
                               >
                                 Max ({country.country})
                               </th>
+                              {/* <th
+                                scope="col"
+                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                              >
+                                Mean ({country.country})
+                              </th>
+                              <th
+                                scope="col"
+                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                              >
+                                Median ({country.country})
+                              </th>
+                              <th
+                                scope="col"
+                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                              >
+                                Mode ({country.country})
+                              </th>
+                              <th
+                                scope="col"
+                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                              >
+                                SD ({country.country})
+                              </th>
+                              <th
+                                scope="col"
+                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                              >
+                                Variance ({country.country})
+                              </th> */}
                             </>
                           ))}
                         </tr>
@@ -140,6 +208,21 @@ export default async function Page() {
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                   {country.maxScore}
                                 </td>
+                                {/* <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  {country.meanScore}
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  {country.medianScore}
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  {country.modeScore}
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  {country.stdDev}
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  {country.variance}
+                                </td> */}
                               </>
                             ))}
                           </tr>
