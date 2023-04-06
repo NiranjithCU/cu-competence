@@ -160,7 +160,7 @@ export default async function Page() {
                               >
                                 Max ({country.country})
                               </th>
-                              {/* <th
+                              <th
                                 scope="col"
                                 className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                               >
@@ -189,7 +189,7 @@ export default async function Page() {
                                 className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                               >
                                 Variance ({country.country})
-                              </th> */}
+                              </th>
                             </>
                           ))}
                         </tr>
@@ -208,7 +208,7 @@ export default async function Page() {
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                   {country.maxScore}
                                 </td>
-                                {/* <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                   {country.meanScore}
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -222,7 +222,7 @@ export default async function Page() {
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                   {country.variance}
-                                </td> */}
+                                </td>
                               </>
                             ))}
                           </tr>
