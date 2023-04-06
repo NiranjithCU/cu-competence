@@ -3,6 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["filteredRelationCount"]
 }
 
 datasource db {
@@ -83,6 +84,7 @@ model Assesment {
   createdAt   DateTime  @default(now())
   answers     Answers[]
   feedback    Feedback?
+  results     Results[]
 }
 
 model Answers {
@@ -99,6 +101,15 @@ model Answers {
   choiceId     Int?
   createdAt    DateTime    @default(now())
   updatedAt    DateTime    @default(now()) @updatedAt
+}
+
+model Results {
+  id           Int         @id @default(autoincrement())
+  assesment    Assesment?  @relation(fields: [assesmentId], references: [id])
+  assesmentId  Int?
+  competence   Competence? @relation(fields: [competenceId], references: [id])
+  competenceId Int?
+  score        Int?
 }
 
 model Feedback {
@@ -134,6 +145,7 @@ model Competence {
   weight      Float?
   themes      Theme[]
   answers     Answers[]
+  results     Results[]
 }
 
 model CompetenceLevel {

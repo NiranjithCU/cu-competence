@@ -3,36 +3,50 @@ import { useSession } from "next-auth/react";
 const scoreLevel = (score: number, weight: number) => {
   const percentage = Math.round((score / weight) * 100);
 
-  const level =
-    percentage <= 100 && percentage > 65
-      ? "Advanced"
-      : percentage <= 65 && percentage > 35
-      ? "Intermediate"
-      : "Foundation";
+  if (percentage <= 100 && percentage > 75) {
+    return {
+      percentage: percentage + " / 100",
+      level: "Expert",
+      badge: {
+        icon: "text-green-400",
+        text: "text-green-800",
+        bg: "bg-green-100",
+      },
+    };
+  }
 
-  const badge =
-    percentage <= 100 && percentage > 65
-      ? {
-          icon: "text-green-400",
-          text: "text-green-800",
-          bg: "bg-green-100",
-        }
-      : percentage <= 65 && percentage > 35
-      ? {
-          icon: "text-yellow-400",
-          text: "text-yellow-800",
-          bg: "bg-yellow-100",
-        }
-      : {
-          icon: "text-gray-400",
-          text: "text-gray-800",
-          bg: "bg-gray-100",
-        };
+  if (percentage <= 75 && percentage > 45) {
+    return {
+      percentage: percentage + " / 100",
+      level: "Advanced",
+      badge: {
+        icon: "text-sky-400",
+        text: "text-sky-800",
+        bg: "bg-sky-100",
+      },
+    };
+  }
+
+  if (percentage <= 45 && percentage > 25) {
+    return {
+      percentage: percentage + " / 100",
+      level: "Intermediate",
+      badge: {
+        icon: "text-yellow-400",
+        text: "text-yellow-800",
+        bg: "bg-yellow-100",
+      },
+    };
+  }
 
   return {
     percentage: percentage + " / 100",
-    level: level,
-    badge: badge,
+    level: "Foundation",
+    badge: {
+      icon: "text-red-400",
+      text: "text-red-800",
+      bg: "bg-red-100",
+    },
   };
 };
 
